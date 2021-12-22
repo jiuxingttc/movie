@@ -1,9 +1,4 @@
-const mongoose = require('mongoose')
-
-mongoose.connect('mongodb://localhost:27017/test')
-    .then(()=>{
-   	 		console.log("mongodb connet"); 
-		})
-	.catch(err=>console.log(err))
-
-module.exports  = mongoose;
+module.exports = {
+    mongonURI:"mongodb://localhost:27017/test",
+    secretOrKey:' secret' //用于生成token
+}
