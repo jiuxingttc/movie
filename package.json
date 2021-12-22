@@ -18,7 +18,9 @@
   "license": "GNU",
   "git repository": "https://github.com/jiuxingttc/movie",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "express": "^4.17.2",
+    "mongoose": "^6.1.2",
     "nodemon": "^2.0.15"
   }
 }
