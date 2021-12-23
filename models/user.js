@@ -5,7 +5,7 @@ const schema = {
     username:String,
     password:String ,
     sex:String,
-    hobby:String,
+    hobby:[],
     role:String
 }
 const User = mongoose.model('user', schema);
