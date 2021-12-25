@@ -17,7 +17,7 @@ router.post("/add",passport.authenticate('jwt',{session:false}),(req,res)=>{
     })
 })
 // 获取所有信息
-router.get('/',passport.authenticate('jwt',{session:false}),(req,res)=>{
+router.get('/allmovie',passport.authenticate('jwt',{session:false}),(req,res)=>{
     Movie.find().then(movie=>{
         if (!movie) {
            return res.status(404).json('没有内容') 

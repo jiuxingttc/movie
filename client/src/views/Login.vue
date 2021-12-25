@@ -24,8 +24,8 @@
 
 <script>
 import jwt_decode from "jwt-decode";
-import axios from 'axios'
-
+import axios from 'axios';
+import * as types from '@/store/types'
 export default {
   name: "login",
   data() {
@@ -46,18 +46,20 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          alert('hello');
-          axios.post("/api/users/login", this.loginUser,).then(res => {
+          axios.post("users/login", this.loginUser).then(res => {
             // 登录成功
             const { token } = res.data;
             localStorage.setItem("eleToken", token);
 
             // 解析token
             const decode = jwt_decode(token);
+            console.log(decode)
 
             // 存储数据
-            this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
-            this.$store.dispatch("setUser", decode);
+            // this.$store.dispatch("setIsAutnenticated", !this.isEmpty(decode));
+            this.$store.commit(types.SET_AUTHENTICATED, !this.isEmpty(decode));
+            // this.$store.dispatch("setUser", decode);
+            this.$store.commit(types.SET_USER, decode);
 
             // 页面跳转
             this.$router.push("/");

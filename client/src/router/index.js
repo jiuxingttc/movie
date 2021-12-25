@@ -3,6 +3,8 @@ import Home from '../views/Home.vue'
 import Index from '../views/Index.vue'
 import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
+import Movielist from '../views/Movielist.vue'
+import Movieclass from '../views/Movieclass.vue'
 import InfoShow from '../views/InfoShow.vue'
 
 const routes = [
@@ -11,13 +13,15 @@ const routes = [
     component:Index,
     children:[
       {
-       path:'/home',
-       component:Home,
+        path: 'movielist',
+        name: 'Movielist',
+        component: Movielist
       },
       {
-       path:'/infoShow',
-       component:InfoShow,
-      }
+        path:'/movieclass',
+        name: 'Movieclass',
+        component:Movieclass
+      },
     ]
   },
   {
@@ -44,18 +48,18 @@ const router = createRouter({
   history: createWebHashHistory(),
   routes
 })
-// router.beforeEach((to,from,next)=>{
-//   const token = localStorage.getItem('eleToken');
-//   // 去登录页或者注册页 不需要校验
-//   if (to.path === '/login' || to.path === '/register') {
-//     next();
-//   }
-//   if(token){
-//     next()
-//   }else{
-//   next('/login')
-//   }
-// })
+router.beforeEach((to,from,next)=>{
+  const token = localStorage.getItem('eleToken');
+  // 去登录页或者注册页 不需要校验
+  if (to.path === '/login' || to.path === '/register') {
+    next();
+  }
+  if(token){
+    next()
+  }else{
+  next('/login')
+  }
+})
 
 
 export default router

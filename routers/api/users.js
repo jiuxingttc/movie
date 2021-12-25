@@ -47,7 +47,7 @@ router.post('/login',(req,res)=>{
         bcrypt.compare(password,user.password).then(isMatch=>{
             if (isMatch) {
                 // 加密规则 加密名字 过期时间 回调
-                const rule = {id:user._id,role:user.role}
+                const rule = {id:user._id,username:user.username,role:user.role}
                 jwt.sign(rule,keys.secretOrKey,{expiresIn:3600},(err,token)=>{
                     if (err) {
                         throw err
@@ -68,12 +68,12 @@ router.post('/login',(req,res)=>{
 router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
     res.json({
         id:req.user.id,
+        username:req.user.username,
         role:req.user.role,
-        username:req.user.username
     })
 })
 
-// get请求 /api/users/test
+// get请求 users/test
 router.get('/test',(req,res)=>{
     res.json({
         msg:"test msg"

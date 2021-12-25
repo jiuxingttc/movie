@@ -116,7 +116,7 @@ export default {
             this.$refs[formName].validate(valid =>{
                 if (valid) {
                     // 表单验证通过
-                    axios.post('/api/users/register',this.registerUser).then(res=>{
+                    axios.post('users/register',this.registerUser).then(res=>{
                         this.$message({
                             message:'注册成功',
                             type:"success"

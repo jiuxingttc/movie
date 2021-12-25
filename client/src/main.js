@@ -20,8 +20,6 @@ axios.interceptors.request.use(function (config) {
   });
   // 添加响应拦截器
   axios.interceptors.response.use(function (response) {
-    
-    
     return response;
   }, function (error) {
     Message.error(error.response.data)
@@ -31,7 +29,7 @@ axios.interceptors.request.use(function (config) {
       localStorage.removeItem('eleToken')
       router.push('/login')
     }
-  
+
     // 对响应错误做点什么
     return Promise.reject(error);
   });
