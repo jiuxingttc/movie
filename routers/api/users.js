@@ -9,7 +9,6 @@ const passport = require('passport')
 //注册
 router.post('/register',(req,res)=>{
    console.log(req.body);
-   //查询数据库中是否有邮箱
    User.findOne({username:req.body.username}).then(user =>{
        if (user) {
            return res.status(400).json({username:"该用户名已经被注册"})
@@ -48,7 +47,7 @@ router.post('/login',(req,res)=>{
             if (isMatch) {
                 // 加密规则 加密名字 过期时间 回调
                 const rule = {id:user._id,username:user.username,role:user.role}
-                jwt.sign(rule,keys.secretOrKey,{expiresIn:3600},(err,token)=>{
+                jwt.sign(rule,keys.secretOrKey,{expiresIn:36000},(err,token)=>{
                     if (err) {
                         throw err
                     }
@@ -62,6 +61,56 @@ router.post('/login',(req,res)=>{
             }
         })
     })
+})
+// 获取所有信息
+router.get('/alluser',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(req.user.role=='admin'){
+        User.find().then(user=>{
+            if (!user) {
+               return res.status(404).json('没有内容') 
+            }
+            res.json(user)
+        }).catch(err=>{
+            res.status(404).json(err) 
+        })
+    }else{
+        res.status(303).json('权限不足') 
+    }
+    
+})
+// 修改用户信息
+router.post('/edituser/:username',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(req.user.role=='admin'){
+        const userFields = {};
+        if(req.body.username) userFields.username =  req.body.username;
+        if(req.body.sex) userFields.sex =  req.body.sex;
+        if(req.body.hobby) userFields.hobby =  req.body.hobby;
+        if(req.body.role) userFields.role =  req.body.role;
+        User.findOneAndUpdate(
+            {username:req.params.username},
+            {$set:userFields},
+            {new:true})
+        .then(user=>{
+            res.json(user)
+        })
+    }else{
+        res.status(303).json('权限不足') 
+    }
+    
+})
+//删除
+router.post('/deleteuser/:username',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(req.user.role=='admin'){
+        User.findOneAndRemove({username:req.params.username},function(err, doc){
+            if(err){return};
+            res.json({
+                code: 0,
+                msg: "删除成功！"
+            })
+        })
+    }else{
+        res.status(303).json('权限不足') 
+    }
 })
 
 //jwt验证token

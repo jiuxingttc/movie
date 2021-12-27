@@ -4,7 +4,7 @@
         <el-col :span="6" class='logo-container'>
                 <span class='title'>电影推荐系统</span>
         </el-col>
-         <el-dropdown @command="handleCommand">
+         <el-dropdown trigger="click" @command="handleCommand">
           <el-icon style="margin-right: 20px"><setting /></el-icon>
           <template #dropdown>
             <el-dropdown-menu>
@@ -17,7 +17,7 @@
           <div class="user">
                 <div class='welcome'>
                     <p class='name comename'>欢迎</p>
-                    <p class='name avatarname'>{{user.username}}</p>
+                    <p class='name avatarname'>{{$store.getters.user.username}}</p>
                 </div>
           </div>
         </span>
@@ -36,6 +36,8 @@
         'register',
         'movielist',
         'movieclass',
+        'userlist',
+        'movieadd',
       ]"
        router="true"
       >
@@ -62,8 +64,8 @@
              <el-icon><setting /></el-icon>
           <span>管理员</span>
           </template>
-            <el-menu-item index="2-1">用户管理</el-menu-item>
-            <el-menu-item index="1-2">上传电影</el-menu-item>
+            <el-menu-item index="userlist">用户管理</el-menu-item>
+            <el-menu-item index="movieadd">上传电影</el-menu-item>
             <el-menu-item index="1-2">更新榜单</el-menu-item>
           </el-sub-menu>
       </el-menu>
@@ -76,7 +78,7 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+import { defineComponent} from "vue";
 import {
   Location,
   Document,
@@ -91,19 +93,7 @@ export default defineComponent({
     Setting,
     IconMenu,
   },
-  computed: {
-    user() {
-      return this.$store.getters.user;
-    },
-   setup() {
-    const handleCommand = (command) => {
-      ElMessage(`click on item ${command}`)
-    }
-    return {
-      handleCommand,
-    }
-  },
-  methods: {
+    methods: {
      handleCommand(cmditem) {
       if (!cmditem) {
         this.$message("菜单选项缺少command属性");
@@ -114,6 +104,8 @@ export default defineComponent({
           this.showInfoList();
           break;
         case "logout":
+      console.log('@@@@@@@@@')
+
           this.logout();
           break;
       }
@@ -123,6 +115,7 @@ export default defineComponent({
       this.$router.push("/infoShow");
     },
     logout() {
+      console.log('@@@@@@@@@')
       // 清除token
       localStorage.removeItem("eleToken");
       this.$store.dispatch("clearCurrentState");
@@ -130,7 +123,7 @@ export default defineComponent({
       this.$router.push("/login");
     }
     }
-  },
+  
 });
 </script>
 

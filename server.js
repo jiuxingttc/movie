@@ -9,10 +9,12 @@ app.use(bodyParser.urlencoded({extended:false}))
 app.use(bodyParser.json());
 const users = require('./routers/api/users')
 const movies = require('./routers/api/movies')
+const ums = require('./routers/api/ums')
 // const User = require('./models/user')
 
 app.use('/api/users',users)
 app.use('/api/movies',movies)
+app.use('/api/ums',ums)
 
 //初始化
 app.use(passport.initialize())

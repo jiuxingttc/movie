@@ -24,6 +24,7 @@
 
 <script>
 import jwt_decode from "jwt-decode";
+import { ElMessage } from "element-plus";
 import axios from 'axios';
 import * as types from '@/store/types'
 export default {
@@ -48,6 +49,10 @@ export default {
         if (valid) {
           axios.post("users/login", this.loginUser).then(res => {
             // 登录成功
+            ElMessage.success({
+                message:'登录成功！',
+                type:"success"
+            })
             const { token } = res.data;
             localStorage.setItem("eleToken", token);
 

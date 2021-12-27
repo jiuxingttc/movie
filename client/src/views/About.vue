@@ -1,5 +1,6 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+<div>
+  <el-button type="text">Text Button</el-button>
+  <el-button type="text">Text Button</el-button>
+</div>
 </template>

@@ -33,7 +33,7 @@
                  <el-form-item label="选择身份">
                     <el-select v-model="registerUser.role" placeholder="请选择身份">
                         <el-option label="管理员" value="admin"></el-option>
-                        <el-option label="用户" value="role"></el-option>
+                        <el-option label="用户" value="user"></el-option>
                     </el-select>
                 </el-form-item>
                 <el-form-item>
@@ -46,7 +46,8 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from 'axios';
+import { ElMessage } from "element-plus";
 export default {
     name: 'register',
     data() {
@@ -117,7 +118,7 @@ export default {
                 if (valid) {
                     // 表单验证通过
                     axios.post('users/register',this.registerUser).then(res=>{
-                        this.$message({
+                        ElMessage.success({
                             message:'注册成功',
                             type:"success"
                         })

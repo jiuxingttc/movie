@@ -4,7 +4,7 @@ const schema = {
     name:String,
     director:String,
     actor:String,
-    type:String,
+    type:[],
     time:Date,
     point:String
 }

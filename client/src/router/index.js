@@ -5,6 +5,8 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Movielist from '../views/Movielist.vue'
 import Movieclass from '../views/Movieclass.vue'
+import Movieadd from '../views/Movieadd.vue'
+import Userlist from '../views/Userlist.vue'
 import InfoShow from '../views/InfoShow.vue'
 
 const routes = [
@@ -18,9 +20,19 @@ const routes = [
         component: Movielist
       },
       {
-        path:'/movieclass',
+        path:'movieclass',
         name: 'Movieclass',
         component:Movieclass
+      },
+      {
+        path:'movieadd',
+        name: 'Movieadd',
+        component:Movieadd
+      },
+      {
+        path:'userlist',
+        name: 'Userlist',
+        component:Userlist
       },
     ]
   },
