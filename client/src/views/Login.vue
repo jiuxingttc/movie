@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="background">
+      <div class="background1">
         <img :src="imgSrc" />
       </div>
     <div class="login">
@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style>
-.background{
+.background1{
     width:100%;  
     height:100%;  /**宽高100%是为了图片铺满屏幕 */
     z-index:-1;

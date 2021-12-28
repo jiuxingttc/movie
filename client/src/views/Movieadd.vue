@@ -1,5 +1,9 @@
 <template>
-<el-card class="box-card">
+<div>
+  <div class="background">
+        <img :src="imgSrc" />
+      </div>
+<el-card class="box-card1">
     <template #header>
       <div class="card-header">
         <span>上传电影</span>
@@ -45,6 +49,7 @@
     </el-form-item>
   </el-form>
   </el-card>
+</div>
 </template>
 
 <script>
@@ -53,6 +58,7 @@ import { ElMessage } from "element-plus";
 export default {
   data() {
     return {
+      imgSrc: require("@/assets/bj1.jpg"),
       form: {
         name: '',
         director: '',
@@ -77,6 +83,15 @@ export default {
 }
 </script>
 <style>
+.background{
+    width:1800px;  
+    height:500px;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+    top: 10%;
+    left: 5%;
+    padding: 0px;
+    position: absolute;
+}
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -91,7 +106,13 @@ export default {
   margin-bottom: 18px;
 }
 
-.box-card {
+.box-card1 {
   width: 600px;
+  position: absolute;
+  top: 15%;
+  left: 34%;
+  padding: 25px;
+  border-radius: 5px;
+  text-align: center;
 }
 </style>

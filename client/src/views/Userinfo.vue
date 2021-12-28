@@ -1,5 +1,8 @@
 <template>
   <div class="info">
+  <div class="background">
+        <img :src="imgSrc" />
+      </div>
     <el-row>
       <el-col :span="12">
         <el-card class="box-card">
@@ -80,6 +83,7 @@ export default {
   },
   data() {
     return {
+      imgSrc: require("@/assets/bj1.jpg"),
       tableData: [],
     }
   },
@@ -101,6 +105,15 @@ export default {
 };
 </script>
 <style>
+.background{
+    width:1800px;  
+    height:500px;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+    top: 10%;
+    left: 5%;
+    padding: 0px;
+    position: absolute;
+}
 .card-header {
   display: flex;
   justify-content: space-between;
@@ -114,5 +127,6 @@ export default {
 }
 .box-card {
   height: 600px;
+  width: 700px;
 }
 </style>
