@@ -32,17 +32,6 @@ router.get('/allmovie',passport.authenticate('jwt',{session:false}),(req,res)=>{
         res.status(404).json(err) 
     })
 })
-// 获取单个信息
-router.get('/:id',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    Movie.findOne({_id:req.params.id}).then(movie=>{
-        if (!movie) {
-           return res.status(404).json('没有内容') 
-        }
-        res.json(movie)
-    }).catch(err=>{
-        res.status(404).json(err) 
-    })
-})
 // 模糊查询电影
 router.get('/querymovie/:name',passport.authenticate('jwt',{session:false}),(req,res)=>{
     Movie.find({"name":{$regex:req.params.name}}).then(movie=>{

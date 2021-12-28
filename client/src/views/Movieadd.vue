@@ -3,7 +3,6 @@
     <template #header>
       <div class="card-header">
         <span>上传电影</span>
-        <el-button class="button" type="text">Operation button</el-button>
       </div>
     </template>
   <el-form ref="form" :model="form" label-width="120px">

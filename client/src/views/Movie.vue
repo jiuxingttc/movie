@@ -54,7 +54,7 @@
       <el-input v-model="form.point"></el-input>
     </el-form-item>
     <el-form-item>
-      <el-button type="primary" @click="edit">上传</el-button>
+      <el-button type="primary" @click="edit">编辑</el-button>
       <el-button @click="this.dialogTableVisible = false">取消</el-button>
     </el-form-item>
   </el-form>

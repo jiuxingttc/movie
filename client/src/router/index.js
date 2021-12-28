@@ -14,7 +14,13 @@ const routes = [
   {
     path:'/',
     component:Index,
+    redirect:'/home',
     children:[
+      {
+        path: 'home',
+        name: 'home',
+        component: Home
+      },
       {
         path: 'movielist',
         name: 'Movielist',

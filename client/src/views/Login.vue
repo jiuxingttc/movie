@@ -1,4 +1,8 @@
 <template>
+    <div>
+      <div class="background">
+        <img :src="imgSrc" />
+      </div>
     <div class="login">
         <section class="form_container">
             <div class="manage_tip">
@@ -20,6 +24,7 @@
             </el-form>
         </section>
     </div>
+    </div>
 </template>
 
 <script>
@@ -31,6 +36,7 @@ export default {
   name: "login",
   data() {
     return {
+      imgSrc: require("@/assets/bj.jpg"),
       loginUser: {
         username: "",
         password: ""
@@ -87,17 +93,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+.background{
+    width:100%;  
+    height:100%;  /**宽高100%是为了图片铺满屏幕 */
+    z-index:-1;
+    position: absolute;
+}
 .login {
   position: relative;
   width: 100%;
   height: 100%;
 }
 .form_container {
-  width: 370px;
-  height: 210px;
+  width: 400px;
+  height: 300px;
   position: absolute;
-  top: 20%;
+  top: 30%;
   left: 34%;
   padding: 25px;
   border-radius: 5px;
@@ -108,15 +120,11 @@ export default {
   color: rgb(51, 4, 4);
 }
 .loginForm {
-  margin-top: 20px;
+  margin-top: 40px;
   background-color: #fff;
   padding: 20px 40px 20px 20px;
   border-radius: 5px;
   box-shadow: 0px 5px 10px #cccc;
-}
-
-.submit_btn {
-  width: 100%;
 }
 .tiparea {
   text-align: right;

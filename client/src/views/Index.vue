@@ -23,7 +23,7 @@
         </span>
       </el-header>
       <el-container>
-      <el-aside width="250px" style="background-color: rgb(238, 241, 246)">
+      <el-aside width="250px" style="background-color:#324057">
       <el-menu
         active-text-color="#ffd04b"
         background-color="#324057"
@@ -31,7 +31,7 @@
         default-active="2"
         text-color="#fff"
         :default-openeds="[
-        'main',
+        'home',
         'login',
         'register',
         'movielist',
@@ -48,7 +48,7 @@
             <el-icon><location /></el-icon>
             <span>电影管理</span>
           </template>
-            <el-menu-item index="/">首页</el-menu-item>
+            <el-menu-item index="home">首页</el-menu-item>
             <el-menu-item index="movielist">推荐榜单</el-menu-item>
             <el-menu-item index="movieclass">电影分类</el-menu-item>
             <el-menu-item index="userinfo">个人信息</el-menu-item>
@@ -134,12 +134,12 @@ export default defineComponent({
   line-height: 70px;
 }
 .el-aside {
-  color: #333;
+  color: #324057;
+  height: 100vh;
 }
 .el-menu {
   background-color: #324057;
   width: 250px;
-  height: 100vh;
 }
 .title {
   vertical-align: middle;
