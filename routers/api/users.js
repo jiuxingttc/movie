@@ -46,7 +46,7 @@ router.post('/login',(req,res)=>{
         bcrypt.compare(password,user.password).then(isMatch=>{
             if (isMatch) {
                 // 加密规则 加密名字 过期时间 回调
-                const rule = {id:user._id,username:user.username,role:user.role}
+                const rule = {id:user._id,username:user.username,sex:user.sex,hobby:user.hobby,role:user.role}
                 jwt.sign(rule,keys.secretOrKey,{expiresIn:36000},(err,token)=>{
                     if (err) {
                         throw err
@@ -96,7 +96,6 @@ router.post('/edituser/:username',passport.authenticate('jwt',{session:false}),(
     }else{
         res.status(303).json('权限不足') 
     }
-    
 })
 //删除
 router.post('/deleteuser/:username',passport.authenticate('jwt',{session:false}),(req,res)=>{

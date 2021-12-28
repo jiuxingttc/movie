@@ -38,6 +38,8 @@
         'movieclass',
         'userlist',
         'movieadd',
+        'userinfo',
+        'movie'
       ]"
        router="true"
       >
@@ -46,10 +48,10 @@
             <el-icon><location /></el-icon>
             <span>电影管理</span>
           </template>
+            <el-menu-item index="/">首页</el-menu-item>
             <el-menu-item index="movielist">推荐榜单</el-menu-item>
             <el-menu-item index="movieclass">电影分类</el-menu-item>
-            <el-menu-item index="1-3">item three</el-menu-item>
-            <el-menu-item index="1-4">item one</el-menu-item>
+            <el-menu-item index="userinfo">个人信息</el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="2">
           <template #title>
@@ -66,7 +68,7 @@
           </template>
             <el-menu-item index="userlist">用户管理</el-menu-item>
             <el-menu-item index="movieadd">上传电影</el-menu-item>
-            <el-menu-item index="1-2">更新榜单</el-menu-item>
+            <el-menu-item index="movie">更新榜单</el-menu-item>
           </el-sub-menu>
       </el-menu>
     </el-aside>
@@ -104,18 +106,15 @@ export default defineComponent({
           this.showInfoList();
           break;
         case "logout":
-      console.log('@@@@@@@@@')
-
           this.logout();
           break;
       }
     },
     showInfoList() {
       // 个人信息
-      this.$router.push("/infoShow");
+      this.$router.push("/userinfo");
     },
     logout() {
-      console.log('@@@@@@@@@')
       // 清除token
       localStorage.removeItem("eleToken");
       this.$store.dispatch("clearCurrentState");

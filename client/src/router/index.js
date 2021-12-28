@@ -6,8 +6,9 @@ import Login from '../views/Login.vue'
 import Movielist from '../views/Movielist.vue'
 import Movieclass from '../views/Movieclass.vue'
 import Movieadd from '../views/Movieadd.vue'
+import Movie from '../views/Movie.vue'
 import Userlist from '../views/Userlist.vue'
-import InfoShow from '../views/InfoShow.vue'
+import Userinfo from '../views/Userinfo.vue'
 
 const routes = [
   {
@@ -30,9 +31,19 @@ const routes = [
         component:Movieadd
       },
       {
+        path:'movie',
+        name: 'Movie',
+        component:Movie
+      },
+      {
         path:'userlist',
         name: 'Userlist',
         component:Userlist
+      },
+      {
+        path: 'userinfo',
+        name: 'userinfo',
+        component: Userinfo
       },
     ]
   },

@@ -23,19 +23,8 @@ router.post("/comment/:moviename",passport.authenticate('jwt',{session:false}),(
         res.json(um)
     })
 })
-
-//获取用户对当前电影的评分
-router.get("/getScore/:moviename",passport.authenticate('jwt',{session:false}),(req,res)=>{
-    UM.findOne({moviename:req.params.moviename,username:req.user.username}).then(um=>{
-        if (!um) {
-           return res.status(404).json('没有内容') 
-        }
-        res.json(um)
-    }).catch(err=>{
-        res.status(404).json(err) 
-    })
-})
-router.get("/getScore",passport.authenticate('jwt',{session:false}),(req,res)=>{
+//获取当前用户的评价评论
+router.get("/getUm",passport.authenticate('jwt',{session:false}),(req,res)=>{
     UM.find({username:req.user.username}).then(um=>{
         if (!um) {
            return res.status(404).json('没有内容') 
@@ -44,6 +33,16 @@ router.get("/getScore",passport.authenticate('jwt',{session:false}),(req,res)=>{
     }).catch(err=>{
         res.status(404).json(err) 
     })
+})
+//删除评分评论
+router.post('/deleteUm/:moviename',passport.authenticate('jwt',{session:false}),(req,res)=>{
+        UM.findOneAndRemove({moviename:req.params.moviename,username:req.user.username},function(err, doc){
+            if(err){return};
+            res.json({
+                code: 0,
+                msg: "删除成功！"
+            })
+        })
 })
 
 module.exports = router;
