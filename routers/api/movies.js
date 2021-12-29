@@ -32,6 +32,21 @@ router.get('/allmovie',passport.authenticate('jwt',{session:false}),(req,res)=>{
         res.status(404).json(err) 
     })
 })
+// 管理员获取所有信息
+router.get('/allmovie0',passport.authenticate('jwt',{session:false}),(req,res)=>{
+    if(req.user.role=='admin'){
+        Movie.find().then(movie=>{
+            if (!movie) {
+            return res.status(404).json('没有内容') 
+            }
+            res.json(movie)
+        }).catch(err=>{
+            res.status(404).json(err) 
+        })
+    }else{
+        res.status(303).json('权限不足') 
+    }
+})
 // 模糊查询电影
 router.get('/querymovie/:name',passport.authenticate('jwt',{session:false}),(req,res)=>{
     Movie.find({"name":{$regex:req.params.name}}).then(movie=>{

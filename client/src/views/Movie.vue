@@ -69,7 +69,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   created() {
       let that = this;
-      axios.get('/api/movies/allmovie').then(res=>{
+      axios.get('/api/movies/allmovie0').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -111,7 +111,7 @@ export default defineComponent({
           type:"success"
         })
         let that = this;
-        axios.get('/api/movies/allmovie').then(res=>{
+        axios.get('/api/movies/allmovie0').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })

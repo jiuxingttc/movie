@@ -8,7 +8,6 @@ const passport = require('passport')
 
 //注册
 router.post('/register',(req,res)=>{
-   console.log(req.body);
    User.findOne({username:req.body.username}).then(user =>{
        if (user) {
            return res.status(400).json({username:"该用户名已经被注册"})
