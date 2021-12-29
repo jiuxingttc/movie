@@ -4,11 +4,8 @@
   "description": "This is a movie's introduction web project using nodejs and express and mongodb and vue. ",
   "main": "server.js",
   "scripts": {
-    "client-install": "npm install --prefix client",
-    "client": "npm start --prefix client",
     "server": "nodemon server.js",
-    "start": "node server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "start": "node server.js"
   },
   "keywords": [
     "nodejs",

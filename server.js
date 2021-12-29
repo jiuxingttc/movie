@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser')
 const passport = require('passport')
 const app  = express();
@@ -16,13 +17,14 @@ app.use('/api/users',users)
 app.use('/api/movies',movies)
 app.use('/api/ums',ums)
 
+app.use(express.static(path.join(__dirname, './client/dist')))
 //初始化
 app.use(passport.initialize())
 require('./config/passport')(passport)
 
-app.get('/',(req,res)=>{
-    res.send("hello express")
-})
+// app.get('/',(req,res)=>{
+//     res.send("hello express")
+// })
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`);
