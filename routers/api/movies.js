@@ -21,7 +21,7 @@ router.post("/addmovie",passport.authenticate('jwt',{session:false}),(req,res)=>
         res.status(303).json('权限不足') 
     }
 })
-// 获取所有信息
+// 获取所有电影列表
 router.get('/allmovie',passport.authenticate('jwt',{session:false}),(req,res)=>{
     Movie.find().then(movie=>{
         if (!movie) {
@@ -69,7 +69,7 @@ router.get('/query/:type',passport.authenticate('jwt',{session:false}),(req,res)
         res.status(404).json(err) 
     })
 })
-// 编辑
+// 编辑电影信息
 router.post("/editMovie/:name",passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(req.user.role=='admin'){
         const movieFields = {};
@@ -90,7 +90,7 @@ router.post("/editMovie/:name",passport.authenticate('jwt',{session:false}),(req
         res.status(303).json('权限不足') 
     }
 })
-//删除
+//删除电影（管理员权限）
 router.post('/deletemovie/:name',passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(req.user.role=='admin'){
         Movie.findOneAndRemove({name:req.params.name},function(err, doc){

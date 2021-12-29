@@ -61,7 +61,7 @@ router.post('/login',(req,res)=>{
         })
     })
 })
-// 获取所有信息
+// 获取所有用户
 router.get('/alluser',passport.authenticate('jwt',{session:false}),(req,res)=>{
     if(req.user.role=='admin'){
         User.find().then(user=>{
@@ -76,25 +76,6 @@ router.get('/alluser',passport.authenticate('jwt',{session:false}),(req,res)=>{
         res.status(303).json('权限不足') 
     }
     
-})
-// 修改用户信息
-router.post('/edituser/:username',passport.authenticate('jwt',{session:false}),(req,res)=>{
-    if(req.user.role=='admin'){
-        const userFields = {};
-        if(req.body.username) userFields.username =  req.body.username;
-        if(req.body.sex) userFields.sex =  req.body.sex;
-        if(req.body.hobby) userFields.hobby =  req.body.hobby;
-        if(req.body.role) userFields.role =  req.body.role;
-        User.findOneAndUpdate(
-            {username:req.params.username},
-            {$set:userFields},
-            {new:true})
-        .then(user=>{
-            res.json(user)
-        })
-    }else{
-        res.status(303).json('权限不足') 
-    }
 })
 //删除
 router.post('/deleteuser/:username',passport.authenticate('jwt',{session:false}),(req,res)=>{
@@ -120,11 +101,5 @@ router.get('/current',passport.authenticate('jwt',{session:false}),(req,res)=>{
     })
 })
 
-// get请求 users/test
-router.get('/test',(req,res)=>{
-    res.json({
-        msg:"test msg"
-    })
-})
 
 module.exports = router;
