@@ -20,7 +20,7 @@ import { ElMessage } from "element-plus";
 export default {
   created() {
       let that = this;
-      axios.get('/users/alluser').then(res=>{
+      axios.get('/api/users/alluser').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -32,13 +32,13 @@ export default {
   },
   methods:{
     deleteUser(username){
-      axios.post(`/users/deleteuser/${username}`).then(res=>{
+      axios.post(`/api/users/deleteuser/${username}`).then(res=>{
         ElMessage.success({
           message:'删除成功!',
           type:"success"
         })
         let that = this;
-        axios.get('/users/alluser').then(res=>{
+        axios.get('/api/users/alluser').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
         })

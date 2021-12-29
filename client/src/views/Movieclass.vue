@@ -32,7 +32,7 @@ import { ElMessage } from "element-plus";
 export default defineComponent({
   created() {
       let that = this;
-      axios.get('/movies/allmovie').then(res=>{
+      axios.get('/api/movies/allmovie').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -45,14 +45,14 @@ export default defineComponent({
   methods:{
     getAll(){
       let that = this;
-      axios.get('/movies/allmovie').then(res=>{
+      axios.get('/api/movies/allmovie').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
     },
     query(value){
       let that = this;
-      axios.get(`/movies/query/${value}`).then(res=>{
+      axios.get(`/api/movies/query/${value}`).then(res=>{
           that.tableData = res.data;
       })
     }

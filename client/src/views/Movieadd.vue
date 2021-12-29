@@ -72,7 +72,7 @@ export default {
   methods: {
     onSubmit() {
       console.log('submit!')
-        axios.post('/movies/addmovie',this.form).then(res=>{
+        axios.post('/api/movies/addmovie',this.form).then(res=>{
             ElMessage.success({
                 message:'上传成功！',
                 type:"success"

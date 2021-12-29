@@ -147,7 +147,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 表单验证通过
-          axios.post("users/register", this.registerUser).then((res) => {
+          axios.post("/api/users/register", this.registerUser).then((res) => {
             ElMessage.success({
               message: "注册成功",
               type: "success",

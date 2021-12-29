@@ -2,7 +2,7 @@ const path = require('path')
 const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
-    publicPath: '/', // 根域上下文目录
+    publicPath: './', // 根域上下文目录
     outputDir: 'dist', // 构建输出目录
     assetsDir: 'assets', // 静态资源目录 (js, css, img, fonts)
     lintOnSave: false, // 是否开启eslint保存检测，有效值：ture | false | 'error'
@@ -34,13 +34,13 @@ module.exports = {
         https: false,
         hotOnly: false,
         proxy: { // 配置跨域
-            '/': {
+            '/api': {
                 target: 'http://localhost:5000/api/',
                 ws: true,
                 changOrigin: true,
-                // pathRewrite: {
-                //     '^/api': ''
-                // }
+                pathRewrite: {
+                    '^/api': ''
+                }
             }
         },
         before: app => { }

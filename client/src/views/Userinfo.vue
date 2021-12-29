@@ -76,7 +76,7 @@ export default {
   },
   created() {
       let that = this;
-      axios.get('/ums/getUm').then(res=>{
+      axios.get('/api/ums/getUm').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -89,13 +89,13 @@ export default {
   },
   methods:{
     deleteUm(moviename){
-      axios.post(`/ums/deleteUm/${moviename}`).then(res=>{
+      axios.post(`/api/ums/deleteUm/${moviename}`).then(res=>{
         ElMessage.success({
           message:'删除成功!',
           type:"success"
         })
         let that = this;
-       axios.get('/ums/getUm').then(res=>{
+       axios.get('/api/ums/getUm').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
         })

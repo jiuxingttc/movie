@@ -53,7 +53,7 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          axios.post("users/login", this.loginUser).then(res => {
+          axios.post("/api/users/login", this.loginUser).then(res => {
             // 登录成功
             ElMessage.success({
                 message:'登录成功！',

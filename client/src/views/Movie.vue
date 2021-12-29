@@ -69,7 +69,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   created() {
       let that = this;
-      axios.get('/movies/allmovie').then(res=>{
+      axios.get('/api/movies/allmovie').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -96,7 +96,7 @@ export default defineComponent({
       this.form = row;
     },
     edit(){
-      axios.post(`/movies/editMovie/${this.form.name}`,this.form).then(res=>{
+      axios.post(`/api/movies/editMovie/${this.form.name}`,this.form).then(res=>{
         this.dialogTableVisible = false;
         ElMessage.success({
           message:'修改成功!',
@@ -105,13 +105,13 @@ export default defineComponent({
       })
     },
     deleteMovie(name){
-      axios.post(`/movies/deletemovie/${name}`).then(res=>{
+      axios.post(`/api/movies/deletemovie/${name}`).then(res=>{
         ElMessage.success({
           message:'删除成功!',
           type:"success"
         })
         let that = this;
-        axios.get('/movies/allmovie').then(res=>{
+        axios.get('/api/movies/allmovie').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })

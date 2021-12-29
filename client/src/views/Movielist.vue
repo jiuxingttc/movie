@@ -54,7 +54,7 @@ import { defineComponent, ref } from 'vue'
 export default defineComponent({
   created() {
       let that = this;
-      axios.get('/movies/allmovie').then(res=>{
+      axios.get('/api/movies/allmovie').then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -76,7 +76,7 @@ export default defineComponent({
   methods:{
     query(){
       let that = this;
-      axios.get(`/movies/querymovie/${this.queryString}`).then(res=>{
+      axios.get(`/api/movies/querymovie/${this.queryString}`).then(res=>{
           console.log(res.data)
           that.tableData = res.data;
       })
@@ -88,7 +88,7 @@ export default defineComponent({
       this.um.score = this.um.score;
     },
     score(){
-      axios.post(`/ums/score/${this.um.moviename}`,this.um).then(res=>{
+      axios.post(`/api/ums/score/${this.um.moviename}`,this.um).then(res=>{
         this.dialogTableVisible  = false;
         ElMessage.success({
           message:'提交成功!',
@@ -103,7 +103,7 @@ export default defineComponent({
       this.um.comment = this.um.comment;
     },
     comment(){
-      axios.post(`/ums/comment/${this.um.moviename}`,this.um).then(res=>{
+      axios.post(`/api/ums/comment/${this.um.moviename}`,this.um).then(res=>{
         this.dialogInputVisible  = false;
         ElMessage.success({
           message:'提交成功!',
