@@ -10,7 +10,7 @@
 
 后端：express框架，routes/api文件夹，入口server.js；
 
-数据库：mongodb，操作mongoose，数据库地址为 'mongodb://172.21.2.236:27017/190110910405'；
+数据库：mongodb，操作mongoose，文件夹models； 数据库地址为 'mongodb://172.21.2.236:27017/190110910405'；
 
 github地址：https://github.com/jiuxingttc/movie；
 
@@ -341,3 +341,5 @@ github地址：https://github.com/jiuxingttc/movie；
 12.29	 一直按照本地数据库进行创建的，在本地环境下，重新build了vue项目，但是遇到一些问题，百度找了很多，在vue.config.js中改了url，便成功了！下午去学校换了数据库，然后部署到服务器，（上传是真的慢）又遇到无法请求，陆续改出相对路径和跨域的ip的问题，最后终于成功了！
 
 最后的最后，完善文档，添加了注释，十天！可算结束了！
+
+1.1	进行最后的补充，提交作业！
